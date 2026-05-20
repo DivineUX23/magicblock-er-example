@@ -50,7 +50,7 @@ describe("er-state-account", () => {
 
 
   const client_seed = 0;
-
+  
   it("Non ER rand created!", async () => {
     // Add your test here.
     const tx = await program.methods.createRand(client_seed).accountsPartial({
@@ -66,7 +66,7 @@ describe("er-state-account", () => {
 
     while(!update && attempts < 3) {
       const account = await program.account.userAccount.fetch(userAccount);
-      console.log("Password ", account.password);
+      //console.log("Password ", account.password);
 
       if (account.password.some(bytes => bytes != 0)) {
         console.log("VRF Randomness succeful");
@@ -121,28 +121,6 @@ describe("er-state-account", () => {
     .rpc({ skipPreflight: true });
     console.log("ER randdom created: ", tx);
 
-    let update = false;
-    let attempts = 0;
-
-    while(!update && attempts < 3) {
-      const account = await program.account.userAccount.fetch(userAccount);
-      console.log("Password ", account.password);
-
-      if (account.password.some(bytes => bytes != 0)) {
-        console.log("ER VRF Randomness succeful ", account.password);
-        update = true;
-      } else {
-        console.log("Still waiting")
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        attempts++;
-      }
-
-    }
-
-    if (!update) {
-      throw new Error("VRF callback failed")
-    }
-
   });
 
 
@@ -174,7 +152,7 @@ describe("er-state-account", () => {
   it("Commit and undelegate from Ephemeral Rollup!", async () => {
     let info = await providerEphemeralRollup.connection.getAccountInfo(userAccount);
 
-    console.log("User Account Info: ", info);
+    //console.log("User Account Info: ", info);
 
     console.log("User account", userAccount.toBase58());
 
@@ -194,6 +172,31 @@ describe("er-state-account", () => {
   );
 
     console.log("\nUser Account Undelegated: ", txHash);
+
+
+    let update = false;
+    let attempts = 0;
+
+    while(!update && attempts < 3) {
+      const account = await program.account.userAccount.fetch(userAccount);
+      console.log("Password ", account.password);
+
+      if (account.password.some(bytes => bytes != 0)) {
+        console.log("ER VRF Randomness succeful ", account.password);
+        update = true;
+      } else {
+        console.log("Still waiting")
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        attempts++;
+      }
+
+    }
+
+    if (!update) {
+      throw new Error("VRF callback failed")
+    }
+
+
   });
 
   /*
