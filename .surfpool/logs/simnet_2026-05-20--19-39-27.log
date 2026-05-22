@@ -12,3 +12,9 @@
 [2026-05-20--19-39-48 INFO txtx::svm::deploy_program] Buffer Ready - Writing to buffer account is complete
 [2026-05-20--19-39-49 INFO txtx::svm::deploy_program] Program Created - Program 97CULumuehCLe4rxT7fHJQje49QT2NC3T6zTmtEBSDRj has been deployed
 [2026-05-20--19-39-50 INFO txtx::svm::deploy_program] Complete - Ephemeral authority account closed and leftover funds returned to payer
+[2026-05-20--21-43-14 INFO actix_server::worker] shutting down idle worker
+[2026-05-20--21-43-14 INFO actix_server::worker] shutting down idle worker
+[2026-05-20--21-43-14 INFO actix_server::worker] shutting down idle worker
+[2026-05-20--21-43-14 INFO actix_server::worker] shutting down idle worker
+[2026-05-20--21-43-14 INFO actix_server::worker] shutting down idle worker
+[2026-05-20--21-43-14 INFO actix_server::accept] accept thread stopped
